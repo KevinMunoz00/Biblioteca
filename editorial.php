@@ -1,67 +1,44 @@
-<?php require 'partials/header.php';
-	require 'database.php';
+<?php
+require 'partials/header.php'; // Incluye el encabezado de la página.
+require 'database.php'; // Incluye el archivo de configuración de la base de datos.
 
-	$message = '';
+$carta = $_GET['id']; // Obtiene el valor del parámetro 'id' de la URL.
 
-	if (!empty($_POST['nombreEditorial'])) {
-		$sql = "INSERT INTO editorial(nombreEditorial) VALUES(:nombreEditorial)";
-		$stmt = $conn->prepare($sql);
-		$stmt->bindParam(':nombreEditorial', $_POST['nombreEditorial']);
+$records = $conn->prepare('SELECT idmulta, tipoMulta, valorMulta FROM multa WHERE idmulta = :idmulta');
+$records->bindParam(':idmulta', $carta); // Vincula el valor de 'idmulta' al parámetro en la consulta SQL.
+$records->execute(); // Ejecuta la consulta para obtener los detalles de la multa.
+$results = $records->fetch(PDO::FETCH_ASSOC); // Obtiene los resultados como un arreglo asociativo.
 
-		if ($stmt->execute()) {
-	      $message = 'Se ha creado una editorial exitosamente';
-	    } else {
-	      $message = 'Ha ocurrido un error al ingresar los datos';
-	    }
-	}
+$message = '';
 
-		$records = $conn->prepare('SELECT ideditorial, nombreEditorial FROM editorial');
-		$records->execute();
-
-
+if (!count($results) > 0) {
+	$message = 'Hubo un problema en el código'; // Verifica si no se encontraron resultados y muestra un mensaje de error.
+}
 ?>
-	<?php if(!empty($message)): ?>
-	    <p> <?= $message ?></p>
-	<?php endif; ?>
 
-	<div class="table-responsive">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col">No.</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Enlace</th>
-					<th scope="col">Enlace</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php if ($records->rowcount() > 0): ?>
-					<?php for ($i=0; $i < $results = $records->fetch(PDO::FETCH_ASSOC); $i++): ?>
-						<tr>
-							<th scope="col"><?= $results['ideditorial'] ?></th>
-							<td><?= $results['nombreEditorial'] ?></td>
-							<td>
-								<a class="btn btn-primary" href="editareditorial.php?id=<?= $results['ideditorial'] ?>">Editar</a>
-							</td>
-							<td>
-								<a class="btn btn-primary" href="eliminareditorial.php?id=<?= $results['ideditorial'] ?>">Eliminar</a>
-							</td>
-						</tr>
-					<?php endfor; ?>
-				<?php endif; ?>
-			</tbody>
-		</table>
+<?php if (!empty($message)): ?>
+	<p>
+		<?= $message ?>
+	</p> <!-- Muestra el mensaje de error. -->
+<?php endif; ?>
+
+<form class="contform" method="POST" action="procesomulta.php">
+	<h2 class="h2">Editar Multa</h2>
+	<div class="form-group">
+		<label class="control-label">Tipo de Multa:</label>
+		<input type="text" class="form-control" name="tipoMulta" placeholder="Escribe la multa: "
+			value="<?= $results['tipoMulta'] ?>">
 	</div>
+	<div class="form-group">
+		<label class="control-label">Valor de la Multa:</label>
+		<input type="number" class="form-control" name="valorMulta" placeholder="Escribe el Valor: "
+			value="<?= $results['valorMulta'] ?>">
+	</div>
+	<input type="hidden" name="idmulta" value="<?= $results['idmulta'] ?>">
+	<!-- Campo oculto para enviar el ID de la multa. -->
+	<div class="form-group">
+		<button type="submit" class="btn btn-primary">Modificar</button>
+	</div>
+</form>
 
-	<form class="contform" method="POST" action="editorial.php">
-		<h2 class="h2">Formulario Editoriales</h2>
-		<div class="form-group">
-			<label class="control-label">Nombre de la Editorial:</label>
-			<input type="text" class="form-control" name="nombreEditorial" placeholder="Escribe el nombre de la Editorial: ">
-		</div>
-		<div class="form-group">
-			<button type="submit" class="btn btn-primary">Agregar</button>
-		</div>
-	</form>
-
-<?php require 'partials/footer.php' ?>
+<?php require 'partials/footer.php'; // Incluye el pie de página. ?>
