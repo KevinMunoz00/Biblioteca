@@ -82,6 +82,9 @@
 							<li>
 								<a href="solicitudvisitante.php">SolicitudVisitante</a>
 							</li>
+							<li>
+								<a href="metricas.php">Metricas</a>
+							</li>
 						</ul> 
 					<?php break; ?>
 					<?php case 4: ?>
@@ -112,6 +115,9 @@
 							</li>
 							<li>
 								<a href="editorial.php">Editorial</a>
+							</li>
+							<li>
+								<a href="metricas.php">Metricas</a>
 							</li>
 						</ul>
 					<?php break; ?>
@@ -146,6 +152,9 @@
 							</li>
 							<li>
 								<a href="editorial.php">Editorial</a>
+							</li>
+							<li>
+								<a href="metricas.php">Metricas</a>
 							</li>
 						</ul> 
 					<?php break; ?>
