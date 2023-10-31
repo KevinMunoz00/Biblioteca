@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Bogota');
 require 'partials/header.php'; // Incluye el encabezado común
 
 // Realiza la conexión a la base de datos aquí (usando require 'database.php' o tu lógica de conexión).
@@ -10,36 +11,44 @@ $query1 = "SELECT COUNT(*) AS NumeroEntidades, table_name AS Entidad, table_rows
           WHERE table_schema = 'proyectobiblioteca'
           GROUP BY table_name";
 $result1 = $conn->query($query1);
+$guardar1 = $conn->query($query1);
+
+// Almacena los resultados en un arreglo
+$resultadoDatos1 = array();
+while ($row = $guardar1->fetch(PDO::FETCH_ASSOC)) {
+    $resultadoDatos1[] = $row;
+}
 
 // Consulta 2: Número de índices por tabla, Numero de Columnas y Llaves foraneas
-$query2 = "SELECT 
-                t.table_name AS Entidad, 
-                COUNT(s.index_name) AS NumeroIndices,
-                COUNT(c.column_name) AS NumeroColumnas,
-                t.table_rows AS Registros,
-                COUNT(k.COLUMN_NAME) AS LlavesForaneas
-            FROM 
-                information_schema.tables AS t
-            LEFT JOIN
-                information_schema.statistics AS s
-            ON
-                t.table_name = s.table_name
-                AND t.table_schema = s.table_schema
-            LEFT JOIN
-                information_schema.columns AS c
-            ON
-                t.table_name = c.table_name
-                AND t.table_schema = c.table_schema
-            LEFT JOIN
-                information_schema.key_column_usage AS k
-            ON
-                t.table_name = k.table_name
-                AND t.table_schema = k.table_schema
-            WHERE 
-                t.table_schema = 'proyectobiblioteca'
-            GROUP BY 
-                t.table_name, t.table_rows";
+$query2 = "SELECT
+t.table_name AS Entidad,
+AUTO_INCREMENT AS AutoIncrement,
+COUNT(c.column_name) AS NumeroColumnas,
+(
+    SELECT COUNT(k.COLUMN_NAME)
+    FROM information_schema.key_column_usage AS k
+    WHERE k.table_name = t.table_name AND k.table_schema = t.table_schema
+) AS NumeroLlavesForaneas
+    FROM
+    information_schema.tables AS t
+    LEFT JOIN
+    information_schema.columns AS c
+    ON
+    t.table_name = c.table_name
+    AND t.table_schema = c.table_schema
+    WHERE
+    t.table_schema = 'proyectobiblioteca'
+    GROUP BY
+    t.table_name;";
 $result2 = $conn->query($query2);
+$guardar2 = $conn->query($query2);
+
+// Almacena los resultados en un arreglo
+$resultadoDatos2 = array();
+while ($row = $guardar2->fetch(PDO::FETCH_ASSOC)) {
+    $resultadoDatos2[] = $row;
+}
+
 
 // Consulta 3: Tamaño de tabla
 $query3 = "SELECT table_name AS Entidad, (data_length + index_length) / 1024 / 1024 AS TamañoMB
@@ -59,6 +68,46 @@ $query6 = "SELECT table_schema 'Base de datos', SUM(data_length + index_length) 
           FROM information_schema.tables
           WHERE table_schema = 'proyectobiblioteca'";
 $result6 = $conn->query($query6);
+$guardar6 = $conn->query($query6);
+
+
+// Almacena los resultados en un arreglo
+$resultadoDatos6 = array();
+while ($row = $guardar6->fetch(PDO::FETCH_ASSOC)) {
+    $resultadoDatos6[] = $row;
+}
+
+
+// Convierte los arrays de datos en formato JSON
+$jsonData1 = json_encode($resultadoDatos1);
+$jsonData2 = json_encode($resultadoDatos2);
+$jsonData3 = json_encode($tamanioTablasData);
+$jsonData6 = json_encode($resultadoDatos6);
+
+// Define el nombre de la carpeta donde se almacenarán los archivos
+$carpeta = 'datos';
+
+// Verifica si la carpeta existe, y si no, créala
+if (!is_dir($carpeta)) {
+    mkdir($carpeta);
+}
+
+// Obtiene la fecha y hora actual
+$fechaHora = date('Y-m-d_H-i-s');
+
+// Define los nombres de los archivos con la fecha y hora
+$archivo1 = $carpeta . '/data1' . '.txt';
+$archivo2 = $carpeta . '/data2' . '.txt';
+$archivo3 = $carpeta . '/data3' . '.txt';
+$archivo6 = $carpeta . '/data6' . '.txt';
+
+// Escribe los datos JSON en los archivos
+file_put_contents($archivo1, $jsonData1 . " Fecha = " . $fechaHora . PHP_EOL, FILE_APPEND | LOCK_EX);
+file_put_contents($archivo2, $jsonData2 . " Fecha = " . $fechaHora . PHP_EOL, FILE_APPEND | LOCK_EX);
+file_put_contents($archivo3, $jsonData3 . " Fecha = " . $fechaHora . PHP_EOL, FILE_APPEND | LOCK_EX);
+file_put_contents($archivo6, $jsonData6 . " Fecha = " . $fechaHora . PHP_EOL, FILE_APPEND | LOCK_EX);
+
+
 ?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -135,26 +184,23 @@ $result6 = $conn->query($query6);
             <thead>
                 <tr>
                     <th>Entidad</th>
-                    <th>Registros</th>
-                    <th>Índices</th>
-                    <th>Columnas</th>
-                    <th>Llaves Foráneas</th>
+                    <th>N° Auto Increment</th>
+                    <th>N° de Columnas</th>
+                    <th>N° de Llaves Foráneas</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = $result2->fetch(PDO::FETCH_ASSOC)) : ?>
                     <tr>
                         <td><?= $row['Entidad'] ?></td>
-                        <td><?= $row['Registros'] ?></td>
-                        <td><?= $row['NumeroIndices'] ?></td>
+                        <td><?= $row['AutoIncrement'] ?></td>
                         <td><?= $row['NumeroColumnas'] ?></td>
-                        <td><?= $row['LlavesForaneas'] ?></td>
+                        <td><?= $row['NumeroLlavesForaneas'] ?></td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
     </div>
-
 
     <div class="container row col-12" style="margin: 5vh 0;">
         <!-- Tamaño de la Base de Datos -->
