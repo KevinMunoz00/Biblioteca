@@ -291,10 +291,3 @@ file_put_contents($archivo6, $jsonData6 . " Fecha = " . $fechaHora . PHP_EOL, FI
                 proyecto</a>
         </div>
     </div>
-</div>
-
-
-
-
-<?php require 'partials/footer.php'; // Incluye el pie de página común 
-?>
