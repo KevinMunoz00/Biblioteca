@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado un autor exitosamente';
-      header('Location: /proyectoBiblioteca/autor.php');
+      header('Location: /Biblioteca-main/autor.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar el autor';
     }

@@ -1,3 +1,7 @@
 [{"Base de datos":"proyectobiblioteca","Tama\u00f1o (MB)":"0.37500000"}] Fecha = 2023-10-31_02-33-04
 [{"Base de datos":"proyectobiblioteca","Tama\u00f1o (MB)":"0.37500000"}] Fecha = 2023-10-31_02-34-14
 [{"Base de datos":"proyectobiblioteca","Tama\u00f1o (MB)":"0.37500000"}] Fecha = 2023-10-31_02-34-16
+[{"Base de datos":"proyectobiblioteca","Tama\u00f1o (MB)":"0.37500000"}] Fecha = 2023-10-31_17-27-36
+[{"Base de datos":"proyectobiblioteca","Tama\u00f1o (MB)":"0.37500000"}] Fecha = 2023-10-31_23-43-16
+[{"Base de datos":"proyectobiblioteca","Tama\u00f1o (MB)":"0.37500000"}] Fecha = 2023-11-01_14-15-37
+[{"Base de datos":"proyectobiblioteca","Tama\u00f1o (MB)":"0.37500000"}] Fecha = 2023-11-01_14-16-47

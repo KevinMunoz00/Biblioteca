@@ -5,5 +5,5 @@
 
 	session_destroy();
 
-	header('Location: /proyectoBiblioteca');
+	header('Location: /Biblioteca-main');
  ?>

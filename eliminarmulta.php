@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado una multa exitosamente';
-      header('Location: /proyectoBiblioteca/multa.php');
+      header('Location: /Biblioteca-main/multa.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar la multa';
     }

@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado una entrega exitosamente';
-      header('Location: /proyectoBiblioteca/entrega.php');
+      header('Location: /Biblioteca-main/entrega.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar la entrega';
     }

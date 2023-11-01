@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado una solicitud del visitante exitosamente';
-      header('Location: /proyectoBiblioteca/solicitudvisitante.php');
+      header('Location: /Biblioteca-main/solicitudvisitante.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar la solicitud del visitante';
     }

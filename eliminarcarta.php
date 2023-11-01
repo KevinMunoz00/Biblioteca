@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado una carta exitosamente';
-      header('Location: /proyectoBiblioteca/carta.php');
+      header('Location: /Biblioteca-main/carta.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar la carta';
     }

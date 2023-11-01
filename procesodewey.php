@@ -14,7 +14,7 @@
 
 	    if ($stmt->execute()) {
 	      $message = 'Se han modificado los datos Exitosamente';
-	      header('Location: /proyectoBiblioteca/dewey.php');
+	      header('Location: /Biblioteca-main/dewey.php');
 	    } else {
 	      $message = 'Ha ocurrido un error al modificar los datos';
 	    }

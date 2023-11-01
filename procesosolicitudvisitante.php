@@ -18,7 +18,7 @@
 
 	    if ($stmt->execute()) {
 	      $message = 'Se han modificado los datos Exitosamente';
-	      header('Location: /proyectoBiblioteca/solicitudvisitante.php');
+	      header('Location: /Biblioteca-main/solicitudvisitante.php');
 	    } else {
 	      $message = 'Ha ocurrido un error al modificar los datos';
 	    }

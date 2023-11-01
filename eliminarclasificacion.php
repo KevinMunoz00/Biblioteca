@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado una clasificacion exitosamente';
-      header('Location: /proyectoBiblioteca/clasificacion.php');
+      header('Location: /Biblioteca-main/clasificacion.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar la clasificacion';
     }

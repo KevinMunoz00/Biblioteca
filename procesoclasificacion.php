@@ -16,7 +16,7 @@
 
 	    if ($stmt->execute()) {
 	      $message = 'Se han modificado los datos Exitosamente';
-	      header('Location: /proyectoBiblioteca/clasificacion.php');
+	      header('Location: /Biblioteca-main/clasificacion.php');
 	    } else {
 	      $message = 'Ha ocurrido un error al modificar los datos';
 	    }

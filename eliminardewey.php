@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado una categoria exitosamente';
-      header('Location: /proyectoBiblioteca/dewey.php');
+      header('Location: /Biblioteca-main/dewey.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar la categoria';
     }

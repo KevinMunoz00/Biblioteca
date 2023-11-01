@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="nave">
-		<h2 class="tituloh2"><a class="nav-link" href="/ProyectoBiblioteca">Proyecto Biblioteca</a></h2>
+		<h2 class="tituloh2"><a class="nav-link" href="/Biblioteca-main">Proyecto Biblioteca</a></h2>
 
 	</div>
 	<div class="principall">

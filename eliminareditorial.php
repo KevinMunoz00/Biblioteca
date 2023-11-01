@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado una editorial exitosamente';
-      header('Location: /proyectoBiblioteca/editorial.php');
+      header('Location: /Biblioteca-main/editorial.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar la editorial';
     }

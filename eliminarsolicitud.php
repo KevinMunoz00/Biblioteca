@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado una solicitud exitosamente';
-      header('Location: /proyectoBiblioteca/solicitud.php');
+      header('Location: /Biblioteca-main/solicitud.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar la solicitud';
     }

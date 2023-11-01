@@ -9,7 +9,7 @@
 
 	if ($stmt->execute()) {
       $message = 'Se ha Eliminado un libro exitosamente';
-      header('Location: /proyectoBiblioteca/libro.php');
+      header('Location: /Biblioteca-main/libro.php');
     } else {
       $message = 'Ha ocurrido un error al Eliminar el libro';
     }

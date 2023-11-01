@@ -4,7 +4,7 @@
 
 	// Verificar si el usuario ya ha iniciado sesión; si es así, redirigirlo a la página principal.
 	if (isset($_SESSION['user_id'])) {
-		header('Location: /proyectoBiblioteca');
+		header('Location: /Biblioteca-main');
 	}
 
 	require 'database.php'; 
@@ -25,7 +25,7 @@
 		// Comprobar si se encontró un usuario y si la contraseña proporcionada coincide con la almacenada.
 		if (count($results) >  0 && password_verify($_POST['contrasena'], $results['contrasena'])){
 			$_SESSION['user_id'] = $results['idusuario'];
-			header('Location: /proyectoBiblioteca');
+			header('Location: /Biblioteca-main');
 		} else {
 			$message = 'Las credenciales no Coinciden.';
 		}
