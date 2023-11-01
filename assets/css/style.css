@@ -1,0 +1,160 @@
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+}
+
+/* Input Forms*/
+input[type="text"], input[type="password"], input[type="number"], input[type="date"]{
+  outline: none;
+  padding: 10px;
+  display: block;
+  width: 300px;
+  border-radius: 3px;
+  border: 1px solid #eee;
+  margin: 20px auto;
+}
+
+
+input[type="submit"] {
+  padding: 10px;
+  color: #fff;
+  background: #0098cb;
+  width: 320px;
+  margin: 20px auto;
+  margin-top: 0;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #00b8eb;
+}
+
+/* Header */
+header {
+  border-bottom: 2px solid #eee;
+  padding: 20px 0;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+header a {
+  text-decoration: none;
+  color: #333;
+}
+
+.nave {
+  /*background: #212529;*/
+  background: gray;
+}
+
+.tituloh2 {
+  color: white;
+  padding: 5px 50px;
+}
+
+.nav-link {
+  color: white;
+}
+.tituloh2:hover {
+  color: black;
+}
+
+.principall {
+  background: #00a199;
+  text-align: center;
+}
+
+/* MENU */
+
+ul {
+  box-sizing: border-box;
+}
+
+li {
+  display: inline-block;
+  text-align: center;
+}
+
+li a {
+  padding: 5px 30px;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+li a:hover {
+  background: black;
+  color: white;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+}
+
+footer h2 {
+  font-family: Verdana;
+  text-align: center;
+  color: #A6A7A8;
+}
+
+.btn {
+  background: #c94309;
+}
+
+/* tablas */
+
+table{
+  border: 4px solid #000000;
+}
+
+.table-responsive {
+  width: 70%;
+  /*background: red;*/
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th td {
+  width: 30%;
+}
+
+tr {
+  text-align: center;
+}
+
+th:hover {
+  background: #BABABA;
+  color: black;
+}
+
+td:hover {
+  background: #BABABA;
+  color: black;
+}
+
+/* Formu.lario */
+
+form {
+  width: 50%;
+  background: #a1e0a9;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 7px;
+  padding: 10px 10px;
+  border: 4px solid #149f96;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.h4 {
+  margin-top: 20px;
+}
